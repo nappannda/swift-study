@@ -1,5 +1,8 @@
 import Foundation
 
-sin(Float.pi / 2.0)
+// 2つの文字列間の順序の比較
+let options = String.CompareOptions.caseInsensitive
+let order = "abc".compare("ABC", options: options)
+order == ComparisonResult.orderedSame
 
-log(1.0)
+"abc".range(of: "bc")

@@ -1,9 +1,4 @@
-let globalA = "a"
-
-func someFunction() {
-    print(globalA)
-}
-
-print(globalA)
-
-someFunction()
+let a = false || false // false
+let b = false || true // true
+let c = true || false // true
+let d = true || true // true

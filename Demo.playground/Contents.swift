@@ -1,4 +1,5 @@
-let a = false || false // false
-let b = false || true // true
-let c = true || false // true
-let d = true || true // true
+import Foundation
+
+sin(Float.pi / 2.0)
+
+log(1.0)

@@ -1,8 +1,10 @@
-import Foundation
+var integers = [1, 2, 3, 4, 5]
 
-// 2つの文字列間の順序の比較
-let options = String.CompareOptions.caseInsensitive
-let order = "abc".compare("ABC", options: options)
-order == ComparisonResult.orderedSame
+integers.remove(at: 2)
+integers
 
-"abc".range(of: "bc")
+integers.removeLast()
+integers
+
+integers.removeAll()
+integers

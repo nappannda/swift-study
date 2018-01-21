@@ -1,2 +1,9 @@
-var a: Int
-a = 1
+let globalA = "a"
+
+func someFunction() {
+    print(globalA)
+}
+
+print(globalA)
+
+someFunction()

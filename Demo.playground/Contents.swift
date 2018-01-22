@@ -1,10 +1,14 @@
-var integers = [1, 2, 3, 4, 5]
+// 更新
+var dictionary1 = ["key": 1]
+dictionary1["key"] = 2
+dictionary1
 
-integers.remove(at: 2)
-integers
+// 追加
+var dictionary2 = ["key": 1]
+dictionary2["key2"] = 2
+dictionary2
 
-integers.removeLast()
-integers
-
-integers.removeAll()
-integers
+// 削除
+var dictionary3 = ["key": 1]
+dictionary3["key"] = nil
+dictionary3

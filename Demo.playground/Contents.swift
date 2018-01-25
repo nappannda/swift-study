@@ -1,3 +1,5 @@
-let range = 1...4
-range.contains(2)
-range.contains(5)
+let a: Int! = 1
+a + 1
+
+var b: Int! = nil
+b + 1

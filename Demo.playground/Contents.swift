@@ -1,4 +1,8 @@
-func convertToInt(from string: String) -> Int {
-    // Int(_:)はInt?型を返すためコンパイルエラー
-    return Int(string)
-}
+var board: [[Int]] = {
+    let sideLength = 3
+    let row = Array(repeating: 1, count: sideLength)
+    let board = Array(repeating: row, count: sideLength)
+    return board
+}()
+
+board

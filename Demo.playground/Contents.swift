@@ -1,11 +1,10 @@
-var count = 0
+let any: Any = "w"
 
-func someFunction() -> Int {
-    defer {
-        count += 1
-    }
-    return count
+switch any {
+case let string as String:
+    print("match: String(\(string))")
+case let int as Int:
+    print("match: Int(\(int))")
+default:
+    print("default")
 }
-
-someFunction()
-count

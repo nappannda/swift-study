@@ -1,10 +1,4 @@
-let any: Any = "w"
-
-switch any {
-case let string as String:
-    print("match: String(\(string))")
-case let int as Int:
-    print("match: Int(\(int))")
-default:
-    print("default")
+func convertToInt(from string: String) -> Int {
+    // Int(_:)はInt?型を返すためコンパイルエラー
+    return Int(string)
 }

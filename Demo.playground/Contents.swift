@@ -1,8 +1,6 @@
-var board: [[Int]] = {
-    let sideLength = 3
-    let row = Array(repeating: 1, count: sideLength)
-    let board = Array(repeating: row, count: sideLength)
-    return board
-}()
+struct SomeStruct {}
 
-board
+class SomeClass {}
+
+let someStruct = SomeStruct()
+let someClass = SomeClass()

@@ -1,6 +1,9 @@
-struct SomeStruct {}
+struct Greeting {
+    var to = "Yosuke Ishikawa"
+    var body: String {
+        return "Hello, \(to)!"
+    }
+}
 
-class SomeClass {}
-
-let someStruct = SomeStruct()
-let someClass = SomeClass()
+let greeting = Greeting()
+greeting.body = "Hi"

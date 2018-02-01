@@ -1,15 +1,3 @@
-struct ValueContainer {
-    let stringValue = "abc"
-    let intValue = 123
-    
-    func getValue() -> String {
-        return stringValue
-    }
-    
-    func getValue() -> Int {
-        return intValue
-    }
-}
-
-let valueContainer = ValueContainer()
-let value = valueContainer.getValue()
+let array = [1, 2, 3, 4]
+let element = array[0]
+let slice = array[0...2]

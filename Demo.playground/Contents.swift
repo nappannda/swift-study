@@ -1,20 +1,21 @@
-struct NewsFeedItem {
-    enum Kind {
-        case a
-        case b
-        case c
-    }
+class IntBox {
+    var value: Int
     
-    let id: Int
-    let title: String
-    let type: Kind
+    init(value: Int) {
+        self.value = value
+    }
 }
 
-let type = NewsFeedItem.Kind.a
-let item = NewsFeedItem(id: 1, title: "Table", type: type)
+var a = IntBox(value: 1) // aはIntBox(value: 1)を参照する
+var b = a // bはaと同じインスタンスを参照する
 
-switch item.type {
-case .a: print("type is .a")
-case .b: print("type is .b")
-case .c: print("type is .c")
-}
+// a.value, b.valueは両方とも1
+a.value
+b.value
+
+// a.valueを2に変更する
+a.value = 2
+
+// a.value,b.value両方とも2
+a.value
+b.value

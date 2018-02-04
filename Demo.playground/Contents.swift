@@ -1,18 +1,16 @@
-class SomeClass : Equatable {
-    static func ==(lhs: SomeClass, rhs: SomeClass) -> Bool {
-        return true
-    }
+enum Color {
+    case rgb(Float, Float, Float)
+    case cmyk(Float, Float, Float, Float)
 }
 
-let a = SomeClass()
-let b = SomeClass()
-let c = a
+let rgb = Color.rgb(0.0, 0.33, 0.66)
+let cmyk = Color.cmyk(0.0, 0.33, 0.66, 0.99)
 
-// 定数aとbは同じ値
-a == b
+let color = Color.rgb(0.0, 0.33, 0.66)
 
-// 定数aとbの参照先は異なる
-a === b
-
-// 定数aとcの参照先は同じ
-a === c
+switch color {
+case .rgb(let r, let g, let b):
+    print("r: \(r), g: \(g), b: \(b)")
+case .cmyk(let c, let m, let y, let k):
+    print("c: \(c), m: \(m), y: \(y), k: \(k)")
+}

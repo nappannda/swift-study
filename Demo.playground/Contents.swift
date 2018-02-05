@@ -1,8 +1,9 @@
-func printIfEqual<T: Equatable>(_ arg1: T, _ arg2: T) {
-    if arg1 == arg2 {
-        print("Both are \(arg1)")
-    }
+protocol SomeProtocol {
+    var variable: Int { get }
 }
 
-printIfEqual(123, 123)
-printIfEqual("str", "str")
+func someMethod(x: SomeProtocol) {
+    // 引数xのプロパティやメソッドのうち、
+    // SomeProtocolで定義されているものが使用可能
+    x.variable
+}

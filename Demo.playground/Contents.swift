@@ -1,7 +1,6 @@
-func someFunction<T>(_ any: Any) -> T? {
-    return any as? T
+struct Container<Content> {
+    var content: Content
 }
 
-let a: String? = someFunction("abc")
-let b: Int? = someFunction(1)
-let c = someFunction("abc")
+let intContainer = Container(content: 1)
+let stringContainer = Container(content: "abc")

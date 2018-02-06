@@ -1,10 +1,12 @@
-protocol ProtocolA {
-    var id: Int { get }
+extension Collection where Iterator.Element == Int {
+    var sum: Int {
+        return reduce(0) { return $0 + $1 }
+    }
 }
 
-protocol ProtocolB {
-    var title: String { get }
-}
+let integers = [1, 2, 3]
+integers.sum
 
-// ProtocolCはid, titleの2つを要求するプロトコルとなる
-protocol ProtocolC : ProtocolA, ProtocolB {}
+let strings = ["a", "b", "c"]
+// stringsの要素はInt型でないため、sumプロパティは利用できない
+strings.sum // コンパイルエラー

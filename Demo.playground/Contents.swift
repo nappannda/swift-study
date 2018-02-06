@@ -1,12 +1,32 @@
-extension Collection where Iterator.Element == Int {
-    var sum: Int {
-        return reduce(0) { return $0 + $1 }
+struct IntCollection : Collection {
+    var startIndex: Int {
+        return 0
+    }
+    
+    var endIndex: Int {
+        return 0
+    }
+    
+    subscript(position: Int) -> Int {
+        return position
+    }
+    
+    func index(after i: Int) -> Int {
+        return i + 1
     }
 }
 
-let integers = [1, 2, 3]
-integers.sum
+let collection = IntCollection()
+let element = collection[5]
 
-let strings = ["a", "b", "c"]
-// stringsの要素はInt型でないため、sumプロパティは利用できない
-strings.sum // コンパイルエラー
+let count = collection.count
+let first = collection.first
+let isEmpty = collection.isEmpty
+let slice = collection[3...5]
+
+var array = [Int]()
+for element in collection {
+    array.append(element)
+}
+
+array

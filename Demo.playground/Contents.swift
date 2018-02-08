@@ -1,19 +1,24 @@
-var temporaryData: String?
+protocol Ownable {
+    var owner: String { get set }
+}
 
-class SomeClass {
-    init() {
-        print("Create a temporary data")
-        temporaryData = "a temporary data"
-    }
-    
-    deinit {
-        print("Clean up the temporary data")
-        temporaryData = nil
+struct Dog : Ownable {
+    var owner: String {
+        didSet {
+            print("\(owner) was assigned as the owner")
+        }
     }
 }
 
-var someClass: SomeClass? = SomeClass()
-temporaryData
+struct Cat : Ownable {
+    var owner: String {
+        didSet {
+            print("\(owner) was assigned as the owner")
+        }
+    }
+}
 
-someClass = nil
-temporaryData
+struct WildEagle {}
+
+var dog = Dog(owner: "Yosuke Ishikawa")
+dog.owner = "Yusei Nishiyama"

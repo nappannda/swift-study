@@ -1,27 +1,15 @@
-protocol GameDelegate : class {
-    var numberOfPlayers: Int { get }
-    func gameDidStart(_ game: Game)
-    func gameDidEnd(_ game: Game)
-}
-
-class TwoPersonsGameDelegate : GameDelegate {
-    var numberOfPlayers: Int { return 2 }
-    func gameDidStart(_ game: Game) { print("Game start") }
-    func gameDidEnd(_ game: Game) { print("Game end") }
-}
-
 class Game {
-    weak var delegate: GameDelegate?
+    private var result = 0
     
-    func start() {
-        print("Number of players is \(delegate?.numberOfPlayers ?? 1)")
-        delegate?.gameDidStart(self)
+
+    func start(completion: (Int) -> Void) {
         print("Playing")
-        delegate?.gameDidEnd(self)
+        result = 42
+        completion(result)
     }
 }
 
-let delegate = TwoPersonsGameDelegate()
-let twoPersonGame = Game()
-twoPersonGame.delegate = delegate
-twoPersonGame.start()
+let game = Game()
+game.start { result in
+    print("Result is \(result)")
+}

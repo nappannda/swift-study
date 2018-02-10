@@ -1,15 +1,27 @@
-class SuperClass {
-    var one = 1
+protocol GameDelegate : class {
+    var numberOfPlayers: Int { get }
+    func gameDidStart(_ game: Game)
+    func gameDidEnd(_ game: Game)
 }
 
-class BaseClass : SuperClass {
-    var two: Int!
+class TwoPersonsGameDelegate : GameDelegate {
+    var numberOfPlayers: Int { return 2 }
+    func gameDidStart(_ game: Game) { print("Game start") }
+    func gameDidEnd(_ game: Game) { print("Game end") }
+}
+
+class Game {
+    weak var delegate: GameDelegate?
     
-    override init() {
-        super.init()
-        two = one + 1
+    func start() {
+        print("Number of players is \(delegate?.numberOfPlayers ?? 1)")
+        delegate?.gameDidStart(self)
+        print("Playing")
+        delegate?.gameDidEnd(self)
     }
 }
 
-BaseClass().one
-BaseClass().two
+let delegate = TwoPersonsGameDelegate()
+let twoPersonGame = Game()
+twoPersonGame.delegate = delegate
+twoPersonGame.start()

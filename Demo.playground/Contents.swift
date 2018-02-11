@@ -1,34 +1,12 @@
-struct User {
-    let id: Int
-    let name: String
-}
-
-enum DatabaseError: Error {
-    case emptyNotFound
-    case duplicatedEntry
-    case invalidEntry(reason: String)
-}
-
-var registeredUsers = [
-    User(id: 1, name: "Yusei Nishiyama"),
-    User(id: 2, name: "Yosuke Ishikawa")
-]
-
-func register(user: User) throws {
-    for registeredUser in registeredUsers {
-        if registeredUser.id == user.id {
-            throw DatabaseError.duplicatedEntry
-        }
+func title(forButtonAt index: Int) -> String {
+    switch index {
+    case 0:
+        return "赤"
+    case 1:
+        return "青"
+    case 2:
+        return "黄"
+    default:
+        fatalError("想定外のボタンのインデックス\(index)を受け取りました。")
     }
-    
-    registeredUsers.append(user)
-}
-
-let user = User(id: 1, name: "Taro Yamada")
-
-do {
-    // register(user:)の呼び出しにはtryキーワードが必要
-    try register(user: user)
-} catch {
-    print("Error: \(error)")
 }

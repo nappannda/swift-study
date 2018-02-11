@@ -1,48 +1,34 @@
-enum Result<T, Error> {
-    case success(T)
-    case failure(Error)
+struct User {
+    let id: Int
+    let name: String
 }
 
-enum DatabaseError {
-    case entryNotFound
+enum DatabaseError: Error {
+    case emptyNotFound
     case duplicatedEntry
     case invalidEntry(reason: String)
 }
 
-struct User {
-    let id: Int
-    let name: String
-    let email: String
-}
+var registeredUsers = [
+    User(id: 1, name: "Yusei Nishiyama"),
+    User(id: 2, name: "Yosuke Ishikawa")
+]
 
-func findUser(byID id: Int) -> Result<User, DatabaseError> {
-    let users = [
-        User(id: 1, name: "Yusei Nishiyama", email: "nishiyama@example.com"),
-        User(id: 2, name: "Yosuke Ishikawa", email: "ishikawa@example.com")
-    ]
-    
-    for user in users {
-        if user.id == id {
-            return .success(user)
+func register(user: User) throws {
+    for registeredUser in registeredUsers {
+        if registeredUser.id == user.id {
+            throw DatabaseError.duplicatedEntry
         }
     }
     
-    return .failure(.entryNotFound)
+    registeredUsers.append(user)
 }
 
-let id = 0
-let result = findUser(byID: id)
+let user = User(id: 1, name: "Taro Yamada")
 
-switch result {
-case let .success(name):
-    print(".success: \(name)")
-case let .failure(error):
-    switch error {
-    case .entryNotFound:
-        print(".failure: .entryNotFound")
-    case .duplicatedEntry:
-        print(".failure: .dupliacatedEntyr")
-    case .invalidEntry(let reason):
-        print(".failure: .invalidEntry(\(reason))")
-    }
+do {
+    // register(user:)の呼び出しにはtryキーワードが必要
+    try register(user: user)
+} catch {
+    print("Error: \(error)")
 }

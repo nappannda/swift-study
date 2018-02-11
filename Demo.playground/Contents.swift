@@ -1,10 +1,20 @@
-import Foundation
+import Dispatch
+import PlaygroundSupport
 
-class SomeThread: Thread {
-    override func main() {
-        print("executed.")
+PlaygroundPage.current.needsIndefiniteExecution = true
+
+func runAsynchronousTask(handler: @escaping (Int) -> Void) {
+    let globalQueue = DispatchQueue.global()
+    globalQueue.async {
+        let result = Array(0...1000000).reduce(0, +)
+        
+        let mainQueue = DispatchQueue.main
+        mainQueue.async {
+            handler(result)
+        }
     }
 }
 
-let thread = SomeThread()
-thread.start()
+runAsynchronousTask() { result in
+    print(result)
+}

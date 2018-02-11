@@ -1,28 +1,16 @@
 import Foundation
+import PlaygroundSupport
 
-class Poster {
-    static let notificationName = Notification.Name("SomeNotification")
-    
-    func post() {
-        NotificationCenter.default.post(
-            name: Poster.notificationName, object: nil)
+PlaygroundPage.current.needsIndefiniteExecution = true
+
+let quque = DispatchQueue.global(qos: .userInitiated)
+
+quque.async {
+    let isMainThread = Thread.isMainThread
+    print("非同期の処理")
+    let quque = DispatchQueue.main
+    quque.async {
+        let isMainThread = Thread.isMainThread
+        print("メインスレッドでの処理")
     }
 }
-
-class Observer {
-    init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: Poster.notificationName, object: nil)
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    @objc func handleNotification(_ notification: Notification) {
-        print("通知を受け取りました")
-    }
-}
-
-var observer = Observer()
-let poster = Poster()
-poster.post()

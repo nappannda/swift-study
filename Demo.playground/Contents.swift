@@ -1,20 +1,24 @@
-import Dispatch
-import PlaygroundSupport
+import Foundation
 
-PlaygroundPage.current.needsIndefiniteExecution = true
-
-func runAsynchronousTask(handler: @escaping (Int) -> Void) {
-    let globalQueue = DispatchQueue.global()
-    globalQueue.async {
-        let result = Array(0...1000000).reduce(0, +)
-        
-        let mainQueue = DispatchQueue.main
-        mainQueue.async {
-            handler(result)
+struct User {
+    let id: Int
+    let name: String
+    let email: String
+    
+    init?(id: Int, name: String, email: String) {
+        let components = email.components(separatedBy: "@")
+        guard components.count == 2 else {
+            return nil
         }
+        
+        self.id = id
+        self.name = name
+        self.email = email
     }
 }
 
-runAsynchronousTask() { result in
-    print(result)
+if let user = User(id: 0, name: "Yosuke Ishikawa", email: "ishikawa.example.com") {
+    print("Username: \(user.name)")
+} else {
+    print("Error: Invalid data")
 }
